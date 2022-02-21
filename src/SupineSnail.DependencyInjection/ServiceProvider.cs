@@ -16,22 +16,22 @@ public class ServiceProvider : IServiceProvider
             .ToDictionary(t => t.Key, t => t.ToArray());
     }
 
-    public T? GetRequiredService<T>() where T : class
+    public T GetRequiredService<T>() where T : class
     {
         if (!TryGetService(out T? service))
             throw new InvalidOperationException(
                 $"Service of '{typeof(T).FullName}' does not exist in the dependency injection container");
 
-        return service;
+        return service!;
     }
 
-    public T? GetRequiredService<T>(string? name) where T : class
+    public T GetRequiredService<T>(string? name) where T : class
     {
         if (!TryGetService(name, out T? service))
             throw new InvalidOperationException(
                 $"Service of '{typeof(T).FullName}' with name '{name}' does not exist in the dependency injection container");
 
-        return service;
+        return service!;
     }
 
     public T? GetService<T>() where T : class
