@@ -41,9 +41,9 @@ jobs:
       run: dotnet test --no-build --verbosity normal --configuration Release /p:Version=${VERSION} src
       
     - name: Pack
-      run: dotnet pack --no-build --configuration Release /p:Version=${VERSION} --output ./packages
+      run: dotnet pack --no-build --configuration Release /p:Version=${VERSION} --output packages src
       
     - name: Push
-      run: dotnet nuget push packages/SupineSnail.DependencyInjection.${VERSION}.nupkg --source https://api.nuget.org/v3/index.json --api-key ${NUGET_TOKEN}
+      run: dotnet nuget push packages/*.nupkg --source https://api.nuget.org/v3/index.json --api-key ${NUGET_TOKEN}
       env:
         NUGET_TOKEN: ${{ secrets.NUGET_TOKEN }}
