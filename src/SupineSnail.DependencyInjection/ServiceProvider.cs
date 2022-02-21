@@ -77,7 +77,7 @@ public class ServiceProvider : IServiceProvider
         return true;
     }
 
-    public bool TryGetService<T>(string? name, out T? service) where T : class?
+    public bool TryGetService<T>(string? name, out T? service) where T : class
     {
         service = default;
             
